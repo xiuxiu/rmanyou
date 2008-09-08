@@ -5,7 +5,7 @@ module Rmanyou
     attr_reader :user
     attr_reader :site
     attr_reader :time
-    attr_reader :session_Id
+    attr_reader :key
     attr_reader :friends
     attr_reader :prefix
     attr_reader :app_Id
@@ -17,13 +17,13 @@ module Rmanyou
         @user = params["my_sig_uId"]
         @site = params["my_sig_sId"]
         @time = params["my_sig_time"]
-        @session_Id = params["my_sig_sessionId"]
+        @session_key = params["my_sig_sessionId"]
         @friends = params["my_sig_friends"]
         @added = params["my_sig_added"] == "1"
         @prefix = params["my_sig_prefix"]
         @app_Id = params["my_sig_appId"]
         @in_iframe = params["xn_sig_in_canvas"] == "0"
-        @session_key = params["my_sig_key"]
+        @key = params["my_sig_key"]
       end
     end
     

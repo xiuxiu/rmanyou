@@ -1,6 +1,6 @@
 require 'rmanyou'
 module Rmanyou
-  module Railsx
+  module Rails
     module Controller
       def self.included(controller)
         controller.extend(ClassMethods)
