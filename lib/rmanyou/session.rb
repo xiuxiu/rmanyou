@@ -36,22 +36,27 @@ module Rmanyou
         :method => method,
         :api_key => api_key,
         :session_key => session_key,
-        :format => "PHP",
+        :format => "XML",
         :v => "0.1"
-      }
-      my_params.merge!(params) if params
+      }      
 
       tmp_params = { }
       my_params.each { |k,v| tmp_params[k.to_s] = v }
       my_params = tmp_params
-      str = (my_params.sort.collect { |c| "#{c[0]}=#{c[1]}&" }).join("") + ENV['MANYOU_SECRET_KEY']
+      str = (my_params.sort.collect { |c| "#{c[0]}=#{c[1]}&" }).join("") 
+      if (params)
+        args_params = { }
+        params.each { |k,v| args_params["args[#{k.to_s}]"] = v }
+        str += (args_params.sort.collect { |c| "#{c[0]}=#{c[1]}&" }).join("")         
+      end
+      str +=ENV['MANYOU_SECRET_KEY']
 
       #pp("str = #{str}") if DEBUG
 
       sig = Digest::MD5.hexdigest(str)
       
       my_params["sig"] = sig
-      
+      my_params.merge!(args_params) if params
       #pp("manyou_params = #{my_params.inspect}") if DEBUG
 
       Parse.new.process(Service.new.post(my_params).body)

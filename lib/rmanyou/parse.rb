@@ -28,13 +28,21 @@ module Rmanyou
       def model_classes
         [ 
          Rmanyou::Friend,
+         Rmanyou::User,
+         Rmanyou::Message,
+         Rmanyou::Notification,
+         Rmanyou::FriendRequest,
          Rmanyou::Error
         ]
       end
       
       def array_elements
         {
-          "result" => UidArray
+          "friend_get_response" => UidArray,
+          "friend_getAppUsers_response" => UidArray,
+          "user_getInfo_response" => TotalArray,
+          "notification_get_response" => TotalArray,
+          "uids" => UidArray
         }
       end
       
@@ -127,7 +135,7 @@ module Rmanyou
 
     def process(data)
       listener = MyListener.new
-      pp("  parse --- #{data}") if DEBUG
+      pp("  parse --- #{data.from_json}") if DEBUG
       REXML::Document.parse_stream(data, listener)
       listener.result
     rescue Exception => e
