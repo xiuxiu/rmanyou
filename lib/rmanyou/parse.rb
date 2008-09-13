@@ -32,7 +32,8 @@ module Rmanyou
          Rmanyou::Message,
          Rmanyou::Notification,
          Rmanyou::FriendRequest,
-         Rmanyou::Error
+         Rmanyou::Error,
+         Rmanyou::Arg
         ]
       end
       
@@ -41,8 +42,7 @@ module Rmanyou
           "friend_get_response" => UidArray,
           "friend_getAppUsers_response" => UidArray,
           "user_getInfo_response" => TotalArray,
-          "notification_get_response" => TotalArray,
-          "uids" => UidArray
+          "notification_get_response" => TotalArray
         }
       end
       

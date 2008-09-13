@@ -7,6 +7,7 @@ require 'rmanyou/models/message'
 require 'rmanyou/models/notification'
 require 'rmanyou/models/friend_request'
 require 'rmanyou/models/error'
+require 'rmanyou/models/arg'
 
 module Rmanyou
   

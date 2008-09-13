@@ -1,17 +1,16 @@
 require "rmanyou/model"
  
 module Rmanyou
-  class Error < Model
+  class Arg < Model
     
     def self.elm_name
-      "error_response"
+      "arg"
     end
     
     def self.attr_names
       [
-       :errCode,
-       :errMessage,
-       :args
+       :key,
+       :value
       ]
     end
  
